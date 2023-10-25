@@ -18,6 +18,7 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.assertj:assertj-core:3.19.0")
     implementation("info.picocli:picocli:4.7.5")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.3")
     annotationProcessor("info.picocli:picocli-codegen:4.7.5")

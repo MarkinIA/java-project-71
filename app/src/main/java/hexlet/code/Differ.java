@@ -48,10 +48,10 @@ public class Differ {
         String differ = "{\n" + middleMap.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(m -> {
-                    return " " + m.getValue() + m.getKey() + "\n";
+                    return "  " + m.getValue() + m.getKey() + "\n";
                 })
-                .collect(Collectors.joining());
-        System.out.println(middleMap);
+                .collect(Collectors.joining()) + "}";
+
         //differString.append("}");
 
         return differ;

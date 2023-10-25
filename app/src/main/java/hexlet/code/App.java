@@ -5,7 +5,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,9 +37,6 @@ public class App {
         } else if (commandLine.isVersionHelpRequested()) {
             commandLine.printVersionHelp(System.out);
         }
-
-        String path = "app/tmp/";
-        File file1 = new File(path);
 
         Path path1 = Paths.get(fileName1).toAbsolutePath().normalize();
         Path path2 = Paths.get(fileName2).toAbsolutePath().normalize();
