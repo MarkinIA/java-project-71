@@ -30,7 +30,6 @@ bin/
 !**/src/test/**/bin/
 
 ### NetBeans ###
-.idea/
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -42,5 +41,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-/.idea/
 /.idea/
