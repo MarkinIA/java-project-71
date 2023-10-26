@@ -6,7 +6,6 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -38,12 +37,9 @@ public class App {
             commandLine.printVersionHelp(System.out);
         }
 
-        Path path1 = Paths.get(fileName1).toAbsolutePath().normalize();
-        Path path2 = Paths.get(fileName2).toAbsolutePath().normalize();
+        Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
+        Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
 
-        String content1 = Files.readString(path1);
-        String content2 = Files.readString(path2);
-
-        System.out.println(Differ.generate(content1, content2));
+        System.out.println(Differ.generate(Parser.parser(path1), Parser.parser(path2)));
     }
 }
