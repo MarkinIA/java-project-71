@@ -40,6 +40,7 @@ public class App {
         Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
         Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
 
+
         System.out.println(Differ.generate(Parser.parser(path1), Parser.parser(path2)));
     }
 }
