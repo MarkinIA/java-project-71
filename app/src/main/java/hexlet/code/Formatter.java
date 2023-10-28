@@ -3,7 +3,7 @@ package hexlet.code;
 import java.util.*;
 
 public class Formatter {
-    public static StringBuilder stylish(Map<String, List<String>> data) {
+    public static String stylish(Map<String, List<String>> data) {
         StringBuilder stylishString = new StringBuilder();
         stylishString.append("{");
         for(Map.Entry<String, List<String>> entry: data.entrySet()) {
@@ -19,10 +19,6 @@ public class Formatter {
             }
         }
         stylishString.append("\n}");
-
-
-
-        //System.out.println(valuesList);
-        return stylishString;
+        return stylishString.toString();
     }
 }

@@ -8,6 +8,7 @@ import picocli.CommandLine.Parameters;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -40,7 +41,6 @@ public class App {
         Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
         Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
 
-
-        System.out.println(Differ.generate(Parser.parser(path1), Parser.parser(path2)));
+        System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2)));
     }
 }

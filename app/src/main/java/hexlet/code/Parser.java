@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parser(Path filePath) throws IOException {
+    public static Map<String, Object> parse(Path filePath) throws IOException {
 
         String fileName = filePath.getFileName().toString();
         String format = fileName.substring(fileName.lastIndexOf("."));
