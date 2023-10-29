@@ -22,7 +22,7 @@ public class App {
     static String fileName2;
     @Option(names = { "-f", "--format"}, paramLabel = "format", defaultValue = "stylish",
             description = "output format [default: ${DEFAULT-VALUE}]")
-    String format;
+    static String format;
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit")
     private boolean usageHelpRequested;
     @Option(names = { "-V", "--version" }, versionHelp = true,
@@ -41,6 +41,6 @@ public class App {
         Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
         Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
 
-        System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2)));
+        System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2), format));
     }
 }
