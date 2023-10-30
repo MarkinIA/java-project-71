@@ -15,6 +15,10 @@ public class Parser {
         String fileName = filePath.getFileName().toString();
         String format = fileName.substring(fileName.lastIndexOf("."));
 
+        if(filePath.toFile().length() == 0) {
+            return new HashMap<>();
+        }
+
         if (format.equals(".yaml")) {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             mapper.findAndRegisterModules();

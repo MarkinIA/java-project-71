@@ -24,6 +24,6 @@ public class Stylish {
             }
         }
         stylishString.append("\n}");
-        return data.isEmpty() ? "" : stylishString.toString();
+        return stylishString.toString();
     }
 }

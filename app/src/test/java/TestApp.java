@@ -15,6 +15,10 @@ public class TestApp {
 
     public static String expectedJSON;
 
+    public static String expectedNullToStylish;
+    public static String expectedNullToPlain;
+    public static String expectedNullToJson;
+
     @BeforeAll
     static void setString() {
         expectedStylish = "{\n"
@@ -67,6 +71,50 @@ public class TestApp {
                 + "\"numbers4\":[[4,5,6],\"ADDED\"],\"obj1\":[{\"nestedKey\":\"value\",\"isNested\":true},\"ADDED\"],"
                 + "\"setting1\":[\"Some value\",\"Another value\",\"CHANGED\"],\"setting2\":[200,300,\"CHANGED\"],"
                 + "\"setting3\":[true,\"none\",\"CHANGED\"]}";
+
+        expectedNullToStylish = "{\n"
+                + "  + chars1: [a, b, c]\n"
+                + "  + chars2: false\n"
+                + "  + checked: true\n"
+                + "  + default: [value1, value2]\n"
+                + "  + id: null\n"
+                + "  + key2: value2\n"
+                + "  + numbers1: [1, 2, 3, 4]\n"
+                + "  + numbers2: [22, 33, 44, 55]\n"
+                + "  + numbers4: [4, 5, 6]\n"
+                + "  + obj1: {nestedKey=value, isNested=true}\n"
+                + "  + setting1: Another value\n"
+                + "  + setting2: 300\n"
+                + "  + setting3: none\n"
+                + "}";
+
+        expectedNullToPlain = "\n"
+                + "Property 'chars1' was added with value: [complex value]\n"
+                + "Property 'chars2' was added with value: false\n"
+                + "Property 'checked' was added with value: true\n"
+                + "Property 'default' was added with value: [complex value]\n"
+                + "Property 'id' was added with value: null\n"
+                + "Property 'key2' was added with value: 'value2'\n"
+                + "Property 'numbers1' was added with value: [complex value]\n"
+                + "Property 'numbers2' was added with value: [complex value]\n"
+                + "Property 'numbers4' was added with value: [complex value]\n"
+                + "Property 'obj1' was added with value: [complex value]\n"
+                + "Property 'setting1' was added with value: 'Another value'\n"
+                + "Property 'setting2' was added with value: 300\n"
+                + "Property 'setting3' was added with value: 'none'";
+
+        expectedNullToJson = "{\"chars1\":[[\"a\",\"b\",\"c\"],\"ADDED\"],"
+                + "\"chars2\":[false,\"ADDED\"],"
+                + "\"checked\":[true,\"ADDED\"],"
+                + "\"default\":[[\"value1\",\"value2\"],\"ADDED\"],"
+                + "\"id\":[null,\"ADDED\"],"
+                + "\"key2\":[\"value2\",\"ADDED\"],"
+                + "\"numbers1\":[[1,2,3,4],\"ADDED\"],"
+                + "\"numbers2\":[[22,33,44,55],\"ADDED\"],"
+                + "\"numbers4\":[[4,5,6],\"ADDED\"],"
+                + "\"obj1\":[{\"nestedKey\":\"value\",\"isNested\":true},\"ADDED\"],"
+                + "\"setting1\":[\"Another value\",\"ADDED\"],\"setting2\":[300,\"ADDED\"],"
+                + "\"setting3\":[\"none\",\"ADDED\"]}";
     }
 
     @Test
@@ -129,6 +177,30 @@ public class TestApp {
 
         assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
                 .isEqualTo(expectedJSON);
+    }
+
+    @Test
+    void testNullToNull() throws IOException {
+
+        Path resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json");
+        Path resourceDirectory2 = Paths.get("src", "test", "resources", "fileNull.json");
+
+        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
+                .isEqualTo("{}");
+    }
+
+    @Test
+    void testNullToFilled() throws IOException {
+
+        Path resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json");
+        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json");
+
+        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "stylish"))
+                .isEqualTo(expectedNullToStylish);
+        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "plain"))
+                .isEqualTo(expectedNullToPlain);
+        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
+                .isEqualTo(expectedNullToJson);
     }
 
 }
