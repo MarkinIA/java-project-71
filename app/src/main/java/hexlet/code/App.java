@@ -35,13 +35,10 @@ public class App {
             commandLine.usage(System.out);
         } else if (commandLine.isVersionHelpRequested()) {
             commandLine.printVersionHelp(System.out);
+        } else {
+            Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
+            Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
+            System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2), format));
         }
-
-        Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
-        Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
-
-        System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2), "json"));
-
-        //System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2), format));
     }
 }
