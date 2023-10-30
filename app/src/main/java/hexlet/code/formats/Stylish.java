@@ -9,7 +9,7 @@ public class Stylish {
     public static String formatToStylish(Map<String, List<Object>> data) {
         StringBuilder stylishString = new StringBuilder();
         stylishString.append("{");
-        for(Map.Entry<String, List<Object>> entry: data.entrySet()) {
+        for (Map.Entry<String, List<Object>> entry: data.entrySet()) {
             stylishString.append("\n  ");
             List<Object> stepList = entry.getValue();
 

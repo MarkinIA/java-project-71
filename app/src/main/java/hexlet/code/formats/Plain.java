@@ -10,7 +10,7 @@ import java.util.Map;
 public class Plain {
     public static String formatToPlain(Map<String, List<Object>> data) {
         StringBuilder plainString = new StringBuilder();
-        for(Map.Entry<String, List<Object>> entry: data.entrySet()) {
+        for (Map.Entry<String, List<Object>> entry: data.entrySet()) {
             List<Object> stepList = entry.getValue();
             if (stepList.contains(Operations.STAYED)) {
                 continue;
