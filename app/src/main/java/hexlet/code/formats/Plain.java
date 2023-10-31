@@ -6,30 +6,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Plain {
     public static String formatToPlain(Map<String, List<Object>> data) {
-        StringBuilder plainString = new StringBuilder();
-        for (Map.Entry<String, List<Object>> entry: data.entrySet()) {
-            List<Object> stepList = entry.getValue();
-            if (stepList.contains(Operations.STAYED)) {
-                continue;
-            }
-            plainString.append("\n");
-            if (stepList.contains(Operations.CHANGED)) {
-                plainString.append("Property '").append(entry.getKey()).append("' was updated. From ")
-                        .append(checkComplexity(stepList.get(0))).append(" to ")
-                        .append(checkComplexity(stepList.get(1)));
-            } else {
-                if (stepList.contains(Operations.REDUCED)) {
-                    plainString.append("Property '").append(entry.getKey()).append("' was removed");
-                } else {
-                    plainString.append("Property '").append(entry.getKey()).append("' was added with value: ")
-                            .append(checkComplexity(stepList.get(0)));
-                }
-            }
-        }
-        return data.isEmpty() ? "" : plainString.toString();
+        return data.entrySet().stream()
+                .map(entry -> {
+                    List<Object> stepList = entry.getValue();
+                    if (stepList.contains(Operations.STAYED)) {
+                        return "";
+                    }
+                    if (stepList.contains(Operations.CHANGED)) {
+                        return "Property '" + entry.getKey() + "' was updated. From "
+                                + checkComplexity(stepList.get(0)) + " to " + checkComplexity(stepList.get(1));
+                    } else {
+                        if (stepList.contains(Operations.REDUCED)) {
+                            return "Property '" + entry.getKey() + "' was removed";
+                        } else {
+                            return "Property '" + entry.getKey()
+                                    + "' was added with value: " + checkComplexity(stepList.get(0));
+                        }
+                    }
+                })
+                .filter(entry -> !entry.isEmpty())
+                .collect(Collectors.joining("\n"));
     }
 
     public static String checkComplexity(Object obj) {

@@ -45,8 +45,7 @@ public class TestApp {
                 + "  + setting3: none\n"
                 + "}";
 
-        expectedPlain = "\n"
-                + "Property 'chars2' was updated. From [complex value] to false\n"
+        expectedPlain = "Property 'chars2' was updated. From [complex value] to false\n"
                 + "Property 'checked' was updated. From false to true\n"
                 + "Property 'default' was updated. From null to [complex value]\n"
                 + "Property 'id' was updated. From 45 to null\n"
@@ -86,8 +85,7 @@ public class TestApp {
                 + "  + setting3: none\n"
                 + "}";
 
-        expectedNullToPlain = "\n"
-                + "Property 'chars1' was added with value: [complex value]\n"
+        expectedNullToPlain = "Property 'chars1' was added with value: [complex value]\n"
                 + "Property 'chars2' was added with value: false\n"
                 + "Property 'checked' was added with value: true\n"
                 + "Property 'default' was added with value: [complex value]\n"
@@ -140,8 +138,8 @@ public class TestApp {
     @Test
     void testStylishYAML() throws IOException {
 
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
                 .isEqualTo(expectedStylish);
@@ -150,8 +148,8 @@ public class TestApp {
     @Test
     void testPlainYAML() throws IOException {
 
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
                 .isEqualTo(expectedPlain);
@@ -170,8 +168,8 @@ public class TestApp {
     @Test
     void testYamlToJson() throws IOException {
 
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
                 .isEqualTo(expectedJSON);

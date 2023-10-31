@@ -19,7 +19,7 @@ public class Parser {
             return new HashMap<>();
         }
 
-        if (format.equals(".yaml")) {
+        if (format.equals(".yml")) {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             mapper.findAndRegisterModules();
             return mapper.readValue(filePath.toFile(), new TypeReference<Map<String, Object>>() { });
