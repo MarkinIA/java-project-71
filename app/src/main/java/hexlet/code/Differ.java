@@ -34,4 +34,29 @@ public class Differ {
         });
         return Formatter.pickStyle(middleMap, format);
     }
+
+    public static String generate(String path1, String path2)
+            throws IOException {
+        Map<String, List<Object>> middleMap = new TreeMap<>();
+        Map<String, Object> fileMap1 = Parser.parse(Paths.get(path1).toAbsolutePath());
+        Map<String, Object> fileMap2 = Parser.parse(Paths.get(path2).toAbsolutePath());
+        Set<String> keys = new TreeSet<>();
+        keys.addAll(fileMap1.keySet());
+        keys.addAll(fileMap2.keySet());
+
+        keys.forEach(key -> {
+            if (fileMap1.containsKey(key) && !fileMap2.containsKey(key)) {
+                middleMap.put(key, Arrays.asList(fileMap1.get(key), Operations.REDUCED));
+            } else if (!fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
+                middleMap.put(key, Arrays.asList(fileMap2.get(key), Operations.ADDED));
+            } else {
+                if (!String.valueOf(fileMap1.get(key)).equals(String.valueOf(fileMap2.get(key)))) {
+                    middleMap.put(key, Arrays.asList(fileMap1.get(key), fileMap2.get(key), Operations.CHANGED));
+                } else {
+                    middleMap.put(key, Arrays.asList(fileMap1.get(key), Operations.STAYED));
+                }
+            }
+        });
+        return Formatter.pickStyle(middleMap, "stylish");
+    }
 }
