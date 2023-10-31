@@ -14,17 +14,17 @@ import java.io.IOException;
 public class App {
 
     @Parameters(paramLabel = "filepath1", description = "path to first file")
-    static String fileName1;
+    private static String fileName1;
     @Parameters(paramLabel = "filepath2", description = "path to second file")
-    static String fileName2;
+    private static String fileName2;
     @Option(names = { "-f", "--format"}, paramLabel = "format", defaultValue = "stylish",
             description = "output format [default: ${DEFAULT-VALUE}]")
-    static String format;
+    private static String format;
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit")
     private boolean usageHelpRequested;
     @Option(names = { "-V", "--version" }, versionHelp = true,
             description = "print version information and exit")
-    boolean versionRequested;
+    private boolean versionRequested;
     public static void main(String[] args) throws IOException {
 
         CommandLine commandLine = new CommandLine(new App());

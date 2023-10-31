@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class TestApp {
-    public static String expectedStylish;
-    public static String expectedPlain;
+    private static String expectedStylish;
+    private static String expectedPlain;
 
-    public static String expectedJSON;
+    private static String expectedJSON;
 
-    public static String expectedNullToStylish;
-    public static String expectedNullToPlain;
-    public static String expectedNullToJson;
+    private static String expectedNullToStylish;
+    private static String expectedNullToPlain;
+    private static String expectedNullToJson;
 
     @BeforeAll
     static void setString() {
