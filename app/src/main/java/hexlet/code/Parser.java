@@ -15,7 +15,7 @@ public class Parser {
         String fileName = filePath.getFileName().toString();
         String format = fileName.substring(fileName.lastIndexOf("."));
 
-        if(filePath.toFile().length() == 0) {
+        if (filePath.toFile().length() == 0) {
             return new HashMap<>();
         }
 
