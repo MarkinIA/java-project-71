@@ -36,8 +36,8 @@ public class App {
         } else if (commandLine.isVersionHelpRequested()) {
             commandLine.printVersionHelp(System.out);
         } else {
-            Path path1 = Paths.get("tmp",  fileName1).toAbsolutePath();
-            Path path2 = Paths.get("tmp",  fileName2).toAbsolutePath();
+            Path path1 = Paths.get(fileName1).toAbsolutePath();
+            Path path2 = Paths.get(fileName2).toAbsolutePath();
             System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2), format));
         }
     }
