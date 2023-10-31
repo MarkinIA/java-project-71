@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -9,9 +10,11 @@ import java.util.Set;
 import java.util.Arrays;
 
 public class Differ {
-    public static String generate(Map<String, Object> fileMap1, Map<String, Object> fileMap2, String format)
+    public static String generate(String path1, String path2, String format)
             throws IOException {
         Map<String, List<Object>> middleMap = new TreeMap<>();
+        Map<String, Object> fileMap1 = Parser.parse(Paths.get(path1).toAbsolutePath());
+        Map<String, Object> fileMap2 = Parser.parse(Paths.get(path2).toAbsolutePath());
         Set<String> keys = new TreeSet<>();
         keys.addAll(fileMap1.keySet());
         keys.addAll(fileMap2.keySet());

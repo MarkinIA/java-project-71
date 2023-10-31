@@ -38,7 +38,9 @@ public class App {
         } else {
             Path path1 = Paths.get(fileName1).toAbsolutePath();
             Path path2 = Paths.get(fileName2).toAbsolutePath();
-            System.out.println(Differ.generate(Parser.parse(path1), Parser.parse(path2), format));
+
+            System.out.println(path1);
+            System.out.println(Differ.generate(fileName1, fileName2, format));
         }
     }
 }

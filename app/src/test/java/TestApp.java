@@ -121,10 +121,10 @@ public class TestApp {
     void testStylishJSON() throws IOException {
 
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "stylish"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
                 .isEqualTo(expectedStylish);
     }
 
@@ -132,74 +132,74 @@ public class TestApp {
     void testPlainJSON() throws IOException {
 
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "plain"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
                 .isEqualTo(expectedPlain);
     }
 
     @Test
     void testStylishYAML() throws IOException {
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "stylish"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
                 .isEqualTo(expectedStylish);
     }
 
     @Test
     void testPlainYAML() throws IOException {
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "plain"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
                 .isEqualTo(expectedPlain);
     }
 
     @Test
     void testJsonToJson() throws IOException {
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
                 .isEqualTo(expectedJSON);
     }
 
     @Test
     void testYamlToJson() throws IOException {
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
                 .isEqualTo(expectedJSON);
     }
 
     @Test
     void testNullToNull() throws IOException {
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "fileNull.json");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "fileNull.json").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
                 .isEqualTo("{}");
     }
 
     @Test
     void testNullToFilled() throws IOException {
 
-        Path resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json");
-        Path resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json");
+        String resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json").toString();
+        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
 
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "stylish"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
                 .isEqualTo(expectedNullToStylish);
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "plain"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
                 .isEqualTo(expectedNullToPlain);
-        assertThat(Differ.generate(Parser.parse(resourceDirectory1), Parser.parse(resourceDirectory2), "json"))
+        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
                 .isEqualTo(expectedNullToJson);
     }
 
