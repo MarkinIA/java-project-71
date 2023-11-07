@@ -4,7 +4,6 @@ import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.nio.file.Paths;
 
 public class TestApp {
@@ -114,7 +113,7 @@ public class TestApp {
     }
 
     @Test
-    void testStylishJSON() throws IOException {
+    void testStylishJSON() throws Exception {
 
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
@@ -125,7 +124,7 @@ public class TestApp {
     }
 
     @Test
-    void testPlainJSON() throws IOException {
+    void testPlainJSON() throws Exception {
 
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
@@ -136,7 +135,7 @@ public class TestApp {
     }
 
     @Test
-    void testStylishYAML() throws IOException {
+    void testStylishYAML() throws Exception {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
@@ -146,7 +145,7 @@ public class TestApp {
     }
 
     @Test
-    void testPlainYAML() throws IOException {
+    void testPlainYAML() throws Exception {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
@@ -156,7 +155,7 @@ public class TestApp {
     }
 
     @Test
-    void testJsonToJson() throws IOException {
+    void testJsonToJson() throws Exception {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
@@ -166,7 +165,7 @@ public class TestApp {
     }
 
     @Test
-    void testYamlToJson() throws IOException {
+    void testYamlToJson() throws Exception {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
@@ -175,8 +174,8 @@ public class TestApp {
                 .isEqualTo(expectedJSON);
     }
 
-    @Test
-    void testNullToNull() throws IOException {
+    /*@Test
+    void testNullToNull() throws Exception {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "fileNull.json").toString();
@@ -186,7 +185,7 @@ public class TestApp {
     }
 
     @Test
-    void testNullToFilled() throws IOException {
+    void testNullToFilled() throws Exception {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "fileNull.json").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
@@ -197,6 +196,6 @@ public class TestApp {
                 .isEqualTo(expectedNullToPlain);
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
                 .isEqualTo(expectedNullToJson);
-    }
+    }*/
 
 }

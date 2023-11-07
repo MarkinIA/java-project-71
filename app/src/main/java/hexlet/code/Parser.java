@@ -4,29 +4,30 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parse(Path filePath) throws IOException {
-
-        String fileName = filePath.getFileName().toString();
-        String format = fileName.substring(fileName.lastIndexOf("."));
-
+    public static Map<String, Object> parse(Path filePath) throws Exception {
         if (filePath.toFile().length() == 0) {
-            return new HashMap<>();
+            throw new Exception("File is empty");
         }
 
-        if (format.equals(".yml")) {
-            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            mapper.findAndRegisterModules();
-            return mapper.readValue(filePath.toFile(), new TypeReference<Map<String, Object>>() { });
-        } else if (format.equals((".json"))) {
-            return new ObjectMapper().readValue(filePath.toFile(), new TypeReference<Map<String, Object>>() { });
-        } else {
-            return new HashMap<>();
+        switch (getFormat(filePath)) {
+            case (".yml"):
+                ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+                mapper.findAndRegisterModules();
+                return mapper.readValue(filePath.toFile(), new TypeReference<Map<String, Object>>() { });
+            case (".json"):
+                return new ObjectMapper().readValue(filePath.toFile(), new TypeReference<Map<String, Object>>() { });
+            default:
+                return new HashMap<>();
         }
+    }
+
+    public static String getFormat(Path filePath) {
+        String filePathStr = filePath.getFileName().toString();
+        return filePathStr.substring(filePathStr.lastIndexOf("."));
     }
 }

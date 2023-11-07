@@ -1,7 +1,5 @@
 package hexlet.code.formats;
 
-import hexlet.code.Operations;
-
 import java.util.List;
 import java.util.Map;
 
@@ -13,14 +11,26 @@ public class Stylish {
             stylishString.append("\n  ");
             List<Object> stepList = entry.getValue();
 
-            if (stepList.contains(Operations.CHANGED)) {
-                stylishString.append("- ").append(entry.getKey()).append(": ").append(stepList.get(0));
-                stylishString.append("\n  ");
-                stylishString.append("+ ").append(entry.getKey()).append(": ").append(stepList.get(1));
-            } else {
-                String operation = stepList.get(1).equals(Operations.ADDED) ? "+" : "-";
-                stylishString.append(stepList.get(1).equals(Operations.STAYED) ? " " : operation).append(" ")
-                        .append(entry.getKey()).append(": ").append(stepList.get(0));
+            switch (stepList.get(stepList.size() - 1).toString()) {
+                case ("CHANGED"):
+                    stylishString.append("- ").append(entry.getKey()).append(": ").append(stepList.get(0));
+                    stylishString.append("\n  ");
+                    stylishString.append("+ ").append(entry.getKey()).append(": ").append(stepList.get(1));
+                    break;
+                case ("ADDED"):
+                    stylishString.append("+").append(" ")
+                            .append(entry.getKey()).append(": ").append(stepList.get(0));
+                    break;
+                case ("REDUCED"):
+                    stylishString.append("-").append(" ")
+                            .append(entry.getKey()).append(": ").append(stepList.get(0));
+                    break;
+                case ("STAYED"):
+                    stylishString.append("  ")
+                            .append(entry.getKey()).append(": ").append(stepList.get(0));
+                    break;
+                default:
+                    break;
             }
         }
         stylishString.append("\n}");

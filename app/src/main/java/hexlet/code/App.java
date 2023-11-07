@@ -5,8 +5,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.IOException;
-
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 @Command(name = "genndiff", footer = "Copyright(c) 2023", version = "1.0",
@@ -25,7 +23,7 @@ public class App {
     @Option(names = { "-V", "--version" }, versionHelp = true,
             description = "print version information and exit")
     private boolean versionRequested;
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         CommandLine commandLine = new CommandLine(new App());
         commandLine.parseArgs(args);
