@@ -24,7 +24,7 @@ public class TestApp {
                 + "\"setting3\":[true,\"none\",\"CHANGED\"]}";
     }
 
-    String getData(String file) throws IOException {
+    static String getData(String file) throws IOException {
         return new String(Files.readAllBytes(Paths.get("src", "test", "resources", file)));
     }
 

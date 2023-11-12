@@ -18,10 +18,12 @@ public class Plain {
                     String template = "";
                     switch (stepList.get(stepList.size() - 1).toString()) {
                         case ("CHANGED"):
-                            template = String.format(templateForChanged, entry.getKey(), checkComplexity(stepList.get(0)), checkComplexity(stepList.get(1)));
+                            template = String.format(templateForChanged, entry.getKey(),
+                                    checkComplexity(stepList.get(0)), checkComplexity(stepList.get(1)));
                             break;
                         case ("ADDED"):
-                            template = String.format(templateForAdded, entry.getKey(), checkComplexity(stepList.get(0)));
+                            template = String.format(templateForAdded, entry.getKey(),
+                                    checkComplexity(stepList.get(0)));
                             break;
                         case ("REDUCED"):
                             template = String.format(templateForReduced, entry.getKey());

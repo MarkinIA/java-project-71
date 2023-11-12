@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class YmlParser implements Parser {
     @Override
-    public Map<String, Object> parse(String strData) throws JsonProcessingException {
+    public final Map<String, Object> parse(String strData) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
         return mapper.readValue(strData, Map.class);

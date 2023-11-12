@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import hexlet.code.parsers.JsonParser;
 import hexlet.code.parsers.YmlParser;
 
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 

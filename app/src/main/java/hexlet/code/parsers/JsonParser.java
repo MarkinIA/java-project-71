@@ -10,7 +10,7 @@ import java.util.Map;
 public class JsonParser implements Parser {
 
     @Override
-    public Map<String, Object> parse(String strData) {
+    public final Map<String, Object> parse(String strData) {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> data = new HashMap<>();
         try {

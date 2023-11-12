@@ -20,7 +20,7 @@ public class Differ {
         return generate(path1, path2, "stylish");
     }
 
-    public static Map<String,Object> getData(String filePath) throws JsonProcessingException {
+    public static Map<String, Object> getData(String filePath) throws JsonProcessingException {
         Path fullPath = Paths.get(filePath).toAbsolutePath().normalize();
         String fileExtension = getExtension(fullPath);
         String content = "";
