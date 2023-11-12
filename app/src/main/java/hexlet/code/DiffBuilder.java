@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Objects;
 
-public class Comparison {
+public class DiffBuilder {
     public static Map<String, List<Object>> getDifferences(
             Map<String, Object> firstMap, Map<String, Object> secondMap) {
         Map<String, List<Object>> diffMap = new TreeMap<>();

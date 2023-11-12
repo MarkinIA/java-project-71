@@ -1,17 +1,18 @@
-package hexlet.code.formats;
+package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
 
 public class Stylish {
-    public static String formatToStylish(Map<String, List<Object>> data) {
+    public static String formatToStylish(Map<String, List<Object>> data) throws Exception {
         StringBuilder stylishString = new StringBuilder();
         stylishString.append("{");
         for (Map.Entry<String, List<Object>> entry: data.entrySet()) {
             stylishString.append("\n  ");
             List<Object> stepList = entry.getValue();
+            String operation = stepList.get(stepList.size() - 1).toString();
 
-            switch (stepList.get(stepList.size() - 1).toString()) {
+            switch (operation) {
                 case ("CHANGED"):
                     stylishString.append("- ").append(entry.getKey()).append(": ").append(stepList.get(0));
                     stylishString.append("\n  ");
@@ -30,7 +31,7 @@ public class Stylish {
                             .append(entry.getKey()).append(": ").append(stepList.get(0));
                     break;
                 default:
-                    break;
+                    throw new Exception("Incorrect operation found");
             }
         }
         stylishString.append("\n}");

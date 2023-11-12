@@ -4,6 +4,7 @@ import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -23,13 +24,17 @@ public class TestApp {
                 + "\"setting3\":[true,\"none\",\"CHANGED\"]}";
     }
 
+    String getData(String file) throws IOException {
+        return new String(Files.readAllBytes(Paths.get("src", "test", "resources", file)));
+    }
+
     @Test
     void testStylishJSON() throws Exception {
 
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
-        String expected = new String(Files.readAllBytes(Paths.get("src", "test", "resources", "expectedStylish.txt")));
+        String expected = getData("expectedStylish.txt");
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
                 .isEqualTo(expected);
@@ -39,7 +44,7 @@ public class TestApp {
     void testPlainJSON() throws Exception {
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
-        String expected = new String(Files.readAllBytes(Paths.get("src", "test", "resources", "expectedPlain.txt")));
+        String expected = getData("expectedPlain.txt");
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
                 .isEqualTo(expected);
@@ -49,7 +54,7 @@ public class TestApp {
     void testStylishYAML() throws Exception {
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
-        String expected = new String(Files.readAllBytes(Paths.get("src", "test", "resources", "expectedStylish.txt")));
+        String expected = getData("expectedStylish.txt");
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
                 .isEqualTo(expected);
@@ -60,7 +65,7 @@ public class TestApp {
 
         String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
         String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
-        String expected = new String(Files.readAllBytes(Paths.get("src", "test", "resources", "expectedPlain.txt")));
+        String expected = getData("expectedPlain.txt");
 
         assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
                 .isEqualTo(expected);

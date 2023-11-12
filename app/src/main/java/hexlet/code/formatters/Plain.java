@@ -1,4 +1,4 @@
-package hexlet.code.formats;
+package hexlet.code.formatters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,22 +7,24 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Plain {
+
+    private static String templateForChanged = "Property '%s' was updated. From %s to %s";
+    private static String templateForAdded = "Property '%s' was added with value: %s";
+    private static String templateForReduced = "Property '%s' was removed";
     public static String formatToPlain(Map<String, List<Object>> data) {
         return data.entrySet().stream()
                 .map(entry -> {
                     List<Object> stepList = entry.getValue();
-                    String template = "Property '%s' was %s";
+                    String template = "";
                     switch (stepList.get(stepList.size() - 1).toString()) {
                         case ("CHANGED"):
-                            template = String.format(template, entry.getKey(), "updated. From "
-                                    + checkComplexity(stepList.get(0)) + " to " + checkComplexity(stepList.get(1)));
+                            template = String.format(templateForChanged, entry.getKey(), checkComplexity(stepList.get(0)), checkComplexity(stepList.get(1)));
                             break;
                         case ("ADDED"):
-                            template = String.format(template, entry.getKey(), "added with value: "
-                                    + checkComplexity(stepList.get(0)));
+                            template = String.format(templateForAdded, entry.getKey(), checkComplexity(stepList.get(0)));
                             break;
                         case ("REDUCED"):
-                            template = String.format(template, entry.getKey(), "removed");
+                            template = String.format(templateForReduced, entry.getKey());
                             break;
                         case ("STAYED"):
                             template = "";
