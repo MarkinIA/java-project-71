@@ -1,23 +1,17 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import hexlet.code.parsers.JsonParser;
 import hexlet.code.parsers.YmlParser;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ParserFactory {
-    public static Map<String, Object> getParser(String format, String data) throws JsonProcessingException {
+    public static Parser getParser(String format) throws Exception {
         switch (format) {
             case (".yml"):
-                Parser parseYML = new YmlParser();
-                return parseYML.parse(data);
+                return new YmlParser();
             case (".json"):
-                Parser parseJSON = new JsonParser();
-                return parseJSON.parse(data);
+                return new JsonParser();
             default:
-                return new HashMap<>();
+                throw new Exception("Wrong file format");
         }
     }
 }

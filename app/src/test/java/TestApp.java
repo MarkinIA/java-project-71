@@ -8,71 +8,56 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class TestApp {
-    static String getData(String file) throws IOException {
+    private static String getResourceByPath(String file) throws IOException {
         return new String(Files.readAllBytes(Paths.get("src", "test", "resources", file)));
     }
 
+    private static String getFilePath(String file) {
+        return Paths.get("src", "test", "resources", file).toString();
+    }
+
     @Test
-    void testStylishJSON() throws Exception {
+    public void testStylishJSON() throws Exception {
+        String expected = getResourceByPath("expectedStylish.txt");
 
-
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
-        String expected = getData("expectedStylish.txt");
-
-        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
+        assertThat(Differ.generate(getFilePath("file1.json"), getFilePath("file2.json"), "stylish"))
                 .isEqualTo(expected);
     }
 
     @Test
-    void testPlainJSON() throws Exception {
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
-        String expected = getData("expectedPlain.txt");
+    public void testPlainJSON() throws Exception {
+        String expected = getResourceByPath("expectedPlain.txt");
 
-        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
+        assertThat(Differ.generate(getFilePath("file1.json"), getFilePath("file2.json"), "plain"))
                 .isEqualTo(expected);
     }
 
     @Test
-    void testStylishYAML() throws Exception {
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
-        String expected = getData("expectedStylish.txt");
+    public void testStylishYAML() throws Exception {
+        String expected = getResourceByPath("expectedStylish.txt");
 
-        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "stylish"))
+        assertThat(Differ.generate(getFilePath("file1.yml"), getFilePath("file2.yml"), "stylish"))
                 .isEqualTo(expected);
     }
 
     @Test
-    void testPlainYAML() throws Exception {
+    public void testPlainYAML() throws Exception {
+        String expected = getResourceByPath("expectedPlain.txt");
 
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
-        String expected = getData("expectedPlain.txt");
-
-        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "plain"))
+        assertThat(Differ.generate(getFilePath("file1.yml"), getFilePath("file2.yml"), "plain"))
                 .isEqualTo(expected);
     }
 
     @Test
-    void testJsonToJson() throws Exception {
-
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.json").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.json").toString();
-
-        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
-                .isEqualTo(getData("expectedJsonBackUp.json"));
+    public void testJsonToJson() throws Exception {
+        assertThat(Differ.generate(getFilePath("file1.json"), getFilePath("file2.json"), "json"))
+                .isEqualTo(getResourceByPath("expectedJsonBackUp.json"));
     }
 
     @Test
-    void testYamlToJson() throws Exception {
-
-        String resourceDirectory1 = Paths.get("src", "test", "resources", "file1.yml").toString();
-        String resourceDirectory2 = Paths.get("src", "test", "resources", "file2.yml").toString();
-
-        assertThat(Differ.generate(resourceDirectory1, resourceDirectory2, "json"))
-                .isEqualTo(getData("expectedJsonBackUp.json"));
+    public void testYamlToJson() throws Exception {
+        assertThat(Differ.generate(getFilePath("file1.yml"), getFilePath("file2.yml"), "json"))
+                .isEqualTo(getResourceByPath("expectedJsonBackUp.json"));
     }
 
 }

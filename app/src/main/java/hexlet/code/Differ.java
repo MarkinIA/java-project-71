@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,16 +18,11 @@ public class Differ {
         return generate(path1, path2, "stylish");
     }
 
-    public static Map<String, Object> getData(String filePath) throws JsonProcessingException {
+    public static Map<String, Object> getData(String filePath) throws Exception {
         Path fullPath = Paths.get(filePath).toAbsolutePath().normalize();
         String fileExtension = getExtension(fullPath);
-        String content = "";
-        try {
-            content = Files.readString(fullPath);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return ParserFactory.getParser(fileExtension, content);
+        String content = Files.readString(fullPath);
+        return ParserFactory.getParser(fileExtension).parse(content);
     }
 
     public static String getExtension(Path filePath) {
